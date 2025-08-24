@@ -43,8 +43,8 @@
             flex-wrap: wrap;
         }
         .sidebar {
-            width: 30%;
-            min-width: 300px;
+            width: 25%;
+            min-width: 280px;
             background-color: #fff;
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -64,12 +64,8 @@
         }
         .filter-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 1rem;
-        }
-        .filter-group {
-            display: flex;
-            flex-direction: column;
         }
         .filter-group label {
             font-size: 0.8rem;
@@ -85,173 +81,110 @@
             background-color: white;
             font-size: 0.95rem;
         }
-        #beach-list {
-            overflow-y: auto;
+        #content-area {
             flex-grow: 1;
+            padding: 2rem;
+            overflow-y: auto;
         }
-        #beach-list ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        #beach-list li {
-            padding: 0.9rem 1.5rem;
+        /* --- STILI NUOVA VISTA A SCHEDE --- */
+        #list-view .summary-card {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
             cursor: pointer;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 1rem;
-            transition: background-color 0.2s, color 0.2s;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
-        #beach-list li:hover {
-            background-color: #eef5ff;
+        #list-view .summary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+        }
+        .summary-card h3 {
+            margin: 0 0 0.5rem 0;
             color: var(--primary-color);
         }
-        #beach-list li.active {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: bold;
+        .summary-card p {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #555;
         }
-        #beach-list .no-results {
-            padding: 2rem;
+        .summary-card .fondo {
+            font-size: 0.8rem;
+            font-style: italic;
+            margin-top: 0.75rem;
+            color: #777;
+        }
+        #list-view .no-results {
             text-align: center;
+            padding: 2rem;
             color: #888;
         }
-        #beach-details {
-            flex-grow: 1;
-            padding: 2rem;
-            overflow-y: auto;
-        }
-        .placeholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 200px;
-            color: #888;
-            font-size: 1.2rem;
-            text-align: center;
+        /* --- STILI VISTA DETTAGLIO --- */
+        #detail-view {
+            display: none; /* Nascosto di default */
         }
         .card {
             background-color: #fff;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 12px var(--shadow-color);
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.4s ease-in-out;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .card h2 {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 2rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        .card p {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .detail-item {
-            background-color: var(--secondary-color);
-            padding: 1rem;
-            border-radius: 5px;
-        }
-        .detail-item strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        .ratings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        .rating-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .rating-stars {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-        }
-        .map-link {
+        .back-button {
             display: inline-block;
-            margin-top: 2rem;
-            padding: 0.8rem 1.5rem;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
             border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            transition: background-color 0.2s, transform 0.2s;
-        }
-        .map-link:hover {
-            background-color: #c20015;
-            transform: translateY(-2px);
-        }
-        .legend {
-            background-color: #fff;
-            margin: 2rem;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-        }
-        .legend h3 {
-            margin-top: 0;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-        .legend p {
-            margin: 0.5rem 0;
-            line-height: 1.6;
+            cursor: pointer;
             font-size: 0.9rem;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
         }
-        /* --- OTTIMIZZAZIONI MOBILE --- */
-        @media (max-width: 768px) {
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .card h2, .details-grid, .ratings-grid, .map-link, .legend {
+            /* Stili riutilizzati dalla versione precedente */
+            margin-top: 0;
+        }
+        .card h2 { color: var(--primary-color); font-size: 2rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+        .card p { font-style: italic; margin-bottom: 1.5rem; line-height: 1.5; }
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .detail-item { background-color: var(--secondary-color); padding: 1rem; border-radius: 5px; }
+        .detail-item strong { display: block; margin-bottom: 0.5rem; color: var(--primary-color); }
+        .ratings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .rating-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; border-bottom: 1px solid var(--border-color); }
+        .rating-stars { color: var(--accent-color); font-size: 1.1rem; }
+        .map-link { display: inline-block; margin-top: 2rem; padding: 0.8rem 1.5rem; background-color: var(--accent-color); color: white; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; transition: background-color 0.2s, transform 0.2s; }
+        .map-link:hover { background-color: #c20015; transform: translateY(-2px); }
+        .legend { background-color: #fff; margin: 2rem; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 12px var(--shadow-color); }
+        .legend h3 { margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        .legend p { margin: 0.5rem 0; line-height: 1.6; font-size: 0.9rem; }
+        
+        @media (max-width: 900px) {
             .container {
                 flex-direction: column;
             }
             .sidebar {
                 width: 100%;
-                max-height: 45vh; /* Limita altezza pannello superiore */
                 border-right: none;
                 border-bottom: 2px solid var(--border-color);
             }
-            .filter-grid {
-                /* Filtri in una sola colonna per essere più grandi e leggibili */
-                grid-template-columns: 1fr;
-            }
-            .header {
-                padding: 0.8rem 1rem;
-            }
-            .header h1 {
-                font-size: 1.4rem;
-            }
-            #beach-details {
-                padding: 1.5rem 1rem;
-            }
-            .card {
-                padding: 1.5rem;
-            }
-            .card h2 {
-                font-size: 1.6rem;
-            }
-            .legend {
-                padding: 1rem;
-                margin: 1rem;
-            }
+            .header h1 { font-size: 1.4rem; }
+            #content-area { padding: 1rem; }
+            .card { padding: 1.5rem; }
+            .card h2 { font-size: 1.6rem; }
+            .legend { padding: 1rem; margin: 1rem; }
         }
     </style>
 </head>
@@ -300,14 +233,10 @@
                     </div>
                 </div>
             </div>
-            <nav id="beach-list">
-                <ul id="list-ul"></ul>
-            </nav>
         </aside>
-        <main id="beach-details">
-            <div class="placeholder">
-                <p>Seleziona una spiaggia dall'elenco o usa i filtri per scoprirne di nuove.</p>
-            </div>
+        <main id="content-area">
+            <div id="list-view"></div>
+            <div id="detail-view"></div>
         </main>
     </div>
 
@@ -351,21 +280,18 @@
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Prepare data
             beachesData.forEach((beach, index) => {
                 beach.originalIndex = index;
                 const match = beach.nome.match(/\((.*?)\)/);
                 beach.localita = match ? match[1] : 'Sconosciuta';
             });
 
-            const listUl = document.getElementById('list-ul');
-            const detailsContainer = document.getElementById('beach-details');
+            const listView = document.getElementById('list-view');
+            const detailView = document.getElementById('detail-view');
             const localitaFilter = document.getElementById('filter-localita');
             const nudismoFilter = document.getElementById('filter-nudismo');
             const bellezzaFilter = document.getElementById('filter-bellezza');
             const accessoFilter = document.getElementById('filter-accesso');
-
-            let activeListItem = null;
 
             function populateLocationFilter() {
                 const locations = [...new Set(beachesData.map(b => b.localita))].sort();
@@ -379,10 +305,8 @@
             
             function applyFilters() {
                 const filters = {
-                    localita: localitaFilter.value,
-                    nudismo: nudismoFilter.value,
-                    bellezza: parseInt(bellezzaFilter.value, 10),
-                    accesso: parseInt(accessoFilter.value, 10),
+                    localita: localitaFilter.value, nudismo: nudismoFilter.value,
+                    bellezza: parseInt(bellezzaFilter.value, 10), accesso: parseInt(accessoFilter.value, 10),
                 };
 
                 const filteredBeaches = beachesData.filter(beach => {
@@ -394,67 +318,47 @@
                     return true;
                 });
                 
-                renderList(filteredBeaches);
-                if(filteredBeaches.length === 0){
-                     detailsContainer.innerHTML = `<div class="placeholder"><p>Nessuna spiaggia corrisponde ai filtri selezionati.</p></div>`;
-                } else if (window.innerWidth > 768) {
-                    // On desktop, show first result automatically if list is not empty
-                    displayBeachDetails(filteredBeaches[0].originalIndex);
-                    const firstLi = listUl.querySelector('li');
-                    if (firstLi) {
-                         if(activeListItem) activeListItem.classList.remove('active');
-                         firstLi.classList.add('active');
-                         activeListItem = firstLi;
-                    }
-                }
+                renderListView(filteredBeaches);
+                showListView();
             }
             
-            function renderList(beaches) {
-                listUl.innerHTML = '';
+            function renderListView(beaches) {
+                listView.innerHTML = '';
                 if (beaches.length === 0) {
-                    listUl.innerHTML = '<li class="no-results">Nessun risultato trovato.</li>';
+                    listView.innerHTML = '<div class="no-results"><h3>Nessun risultato</h3><p>Prova a modificare i filtri.</p></div>';
                     return;
                 }
 
                 beaches.forEach(beach => {
-                    const li = document.createElement('li');
-                    li.textContent = beach.nome;
-                    li.dataset.index = beach.originalIndex;
-                    li.addEventListener('click', (e) => {
-                        const index = parseInt(e.currentTarget.dataset.index);
-                        displayBeachDetails(index);
-                        
-                        if(activeListItem) activeListItem.classList.remove('active');
-                        li.classList.add('active');
-                        activeListItem = li;
-
-                        // --- MOBILE UX: SCROLL AUTOMATICO ---
-                        if (window.innerWidth <= 768) {
-                            detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    });
-                    listUl.appendChild(li);
+                    const card = document.createElement('div');
+                    card.className = 'summary-card';
+                    card.dataset.index = beach.originalIndex;
+                    card.innerHTML = `
+                        <h3>${beach.nome}</h3>
+                        <p>${beach.descrizione}</p>
+                        <p class="fondo"><strong>Fondo:</strong> ${beach.fondo}</p>
+                    `;
+                    card.addEventListener('click', () => showDetailView(beach.originalIndex));
+                    listView.appendChild(card);
                 });
             }
 
             function createRatingStars(rating) {
                 let stars = '';
-                for (let i = 0; i < 5; i++) {
-                    stars += i < rating ? '★' : '☆';
-                }
+                for (let i = 0; i < 5; i++) { stars += i < rating ? '★' : '☆'; }
                 return stars;
             }
 
-            function displayBeachDetails(index) {
+            function showDetailView(index) {
                 const beach = beachesData[index];
                 const mapQuery = encodeURIComponent(beach.nome.replace(/\(.*?\)/g, '').trim());
                 const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery},Costa Brava`;
                 
-                detailsContainer.innerHTML = `
+                detailView.innerHTML = `
                     <div class="card">
+                        <button class="back-button">&larr; Torna all'elenco</button>
                         <h2>${beach.nome}</h2>
                         <p>${beach.descrizione}</p>
-                        
                         <h3>Dettagli</h3>
                         <div class="details-grid">
                             <div class="detail-item"><strong>Tipo di fondo:</strong> ${beach.fondo}</div>
@@ -463,7 +367,6 @@
                             <div class="detail-item"><strong>Docce:</strong> ${beach.docce}</div>
                             <div class="detail-item"><strong>Nudismo:</strong> ${beach.nudismo}</div>
                         </div>
-
                         <h3>Valutazioni</h3>
                         <div class="ratings-grid">
                             <div class="rating-item"><span>Facilità accesso</span><span class="rating-stars">${createRatingStars(beach.accesso)}</span></div>
@@ -472,10 +375,20 @@
                             <div class="rating-item"><span>Esposizione vento</span><span class="rating-stars">${createRatingStars(beach.vento)}</span></div>
                             <div class="rating-item"><span>Pulizia</span><span class="rating-stars">${createRatingStars(beach.pulizia)}</span></div>
                         </div>
-
                         <a href="${mapUrl}" target="_blank" class="map-link">Vedi su Google Maps</a>
                     </div>
                 `;
+                
+                detailView.querySelector('.back-button').addEventListener('click', showListView);
+                
+                listView.style.display = 'none';
+                detailView.style.display = 'block';
+                window.scrollTo(0, 0); // Torna in cima alla pagina
+            }
+
+            function showListView() {
+                detailView.style.display = 'none';
+                listView.style.display = 'block';
             }
 
             // Initialize the app
