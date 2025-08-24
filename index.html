@@ -13,6 +13,9 @@
             --border-color: #DDD;
             --shadow-color: rgba(0,0,0,0.1);
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -21,6 +24,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
         }
         .header {
             background-color: var(--primary-color);
@@ -46,6 +50,7 @@
             display: flex;
             flex-direction: column;
             box-shadow: 1px 0 5px var(--shadow-color);
+            flex-shrink: 0;
         }
         .filter-container {
             padding: 1rem 1.5rem;
@@ -60,7 +65,7 @@
         .filter-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
+            gap: 1rem;
         }
         .filter-group {
             display: flex;
@@ -70,14 +75,15 @@
             font-size: 0.8rem;
             margin-bottom: 0.3rem;
             color: #555;
+            font-weight: 500;
         }
         .filter-group select {
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.6rem;
             border: 1px solid var(--border-color);
-            border-radius: 4px;
+            border-radius: 5px;
             background-color: white;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
         #beach-list {
             overflow-y: auto;
@@ -118,7 +124,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            min-height: 200px;
             color: #888;
             font-size: 1.2rem;
             text-align: center;
@@ -145,6 +151,7 @@
         .card p {
             font-style: italic;
             margin-bottom: 1.5rem;
+            line-height: 1.5;
         }
         .details-grid {
             display: grid;
@@ -176,6 +183,7 @@
         }
         .rating-stars {
             color: var(--accent-color);
+            font-size: 1.1rem;
         }
         .map-link {
             display: inline-block;
@@ -186,6 +194,7 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
+            text-align: center;
             transition: background-color 0.2s, transform 0.2s;
         }
         .map-link:hover {
@@ -207,26 +216,41 @@
         .legend p {
             margin: 0.5rem 0;
             line-height: 1.6;
+            font-size: 0.9rem;
         }
+        /* --- OTTIMIZZAZIONI MOBILE --- */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
             }
             .sidebar {
                 width: 100%;
-                max-height: 50vh; /* Adjust height for mobile */
+                max-height: 45vh; /* Limita altezza pannello superiore */
                 border-right: none;
-                border-bottom: 1px solid var(--border-color);
+                border-bottom: 2px solid var(--border-color);
             }
-            #beach-details, .legend {
-                padding: 1rem;
-                margin: 1rem;
+            .filter-grid {
+                /* Filtri in una sola colonna per essere più grandi e leggibili */
+                grid-template-columns: 1fr;
+            }
+            .header {
+                padding: 0.8rem 1rem;
             }
             .header h1 {
                 font-size: 1.4rem;
             }
+            #beach-details {
+                padding: 1.5rem 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
             .card h2 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+            }
+            .legend {
+                padding: 1rem;
+                margin: 1rem;
             }
         }
     </style>
@@ -234,7 +258,7 @@
 <body>
 
     <header class="header">
-        <h1>Guida Interattiva alle Spiagge della Costa Brava</h1>
+        <h1>Guida alle Spiagge della Costa Brava</h1>
     </header>
 
     <div class="container">
@@ -257,7 +281,7 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="filter-bellezza">Bellezza</label>
+                        <label for="filter-bellezza">Bellezza (minima)</label>
                         <select id="filter-bellezza">
                             <option value="0">Qualsiasi</option>
                             <option value="5">★★★★★</option>
@@ -266,12 +290,12 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="filter-accesso">Accessibilità</label>
+                        <label for="filter-accesso">Accessibilità (minima)</label>
                         <select id="filter-accesso">
                             <option value="0">Qualsiasi</option>
-                            <option value="5">Molto facile (★★★★★)</option>
-                            <option value="4">Facile (★★★★+)</option>
-                            <option value="3">Media (★★★+)</option>
+                            <option value="5">★★★★★ (Molto facile)</option>
+                            <option value="4">★★★★+ (Facile)</option>
+                            <option value="3">★★★+ (Media)</option>
                         </select>
                     </div>
                 </div>
@@ -289,11 +313,11 @@
 
     <div class="legend">
         <h3>Legenda delle Valutazioni (Scala da 1 a 5)</h3>
-        <p><strong>Facilità accesso:</strong> 1 = Molto difficile | 5 = Molto facile (parcheggio adiacente).</p>
+        <p><strong>Facilità accesso:</strong> 1 = Molto difficile | 5 = Molto facile.</p>
         <p><strong>Bellezza:</strong> 1 = Scarsamente attraente | 5 = Paesaggio eccezionale.</p>
-        <p><strong>Affollamento:</strong> 1 = Quasi deserta | 5 = Estremamente affollata (in alta stagione).</p>
+        <p><strong>Affollamento:</strong> 1 = Quasi deserta | 5 = Estremamente affollata.</p>
         <p><strong>Esposizione vento:</strong> 1 = Molto protetta | 5 = Molto esposta.</p>
-        <p><strong>Pulizia:</strong> 1 = Scarsa | 5 = Eccellente, acqua cristallina.</p>
+        <p><strong>Pulizia:</strong> 1 = Scarsa | 5 = Eccellente.</p>
     </div>
 
     <script>
@@ -326,131 +350,142 @@
             { nome: "Cala Treumal (Blanes)", descrizione: "Baia con sabbia dorata e pineta, ottima per snorkeling e relax.", fondo: "Sabbia", servizi: "Lettini, ombrelloni, bar", bagni: "Sì", docce: "Sì", nudismo: "No", accesso: 4, bellezza: 4, affollamento: 3, vento: 4, pulizia: 4 }
         ];
 
-        // Prepare data
-        beachesData.forEach((beach, index) => {
-            beach.originalIndex = index;
-            const match = beach.nome.match(/\((.*?)\)/);
-            beach.localita = match ? match[1] : 'Sconosciuta';
-        });
-
-        const listUl = document.getElementById('list-ul');
-        const detailsContainer = document.getElementById('beach-details');
-        const localitaFilter = document.getElementById('filter-localita');
-        const nudismoFilter = document.getElementById('filter-nudismo');
-        const bellezzaFilter = document.getElementById('filter-bellezza');
-        const accessoFilter = document.getElementById('filter-accesso');
-
-        let activeListItem = null;
-
-        function populateLocationFilter() {
-            const locations = [...new Set(beachesData.map(b => b.localita))].sort();
-            locations.forEach(location => {
-                const option = document.createElement('option');
-                option.value = location;
-                option.textContent = location;
-                localitaFilter.appendChild(option);
-            });
-        }
-        
-        function applyFilters() {
-            const filters = {
-                localita: localitaFilter.value,
-                nudismo: nudismoFilter.value,
-                bellezza: parseInt(bellezzaFilter.value, 10),
-                accesso: parseInt(accessoFilter.value, 10),
-            };
-
-            const filteredBeaches = beachesData.filter(beach => {
-                if (filters.localita !== 'all' && beach.localita !== filters.localita) return false;
-                if (filters.bellezza > 0 && beach.bellezza < filters.bellezza) return false;
-                if (filters.accesso > 0 && beach.accesso < filters.accesso) return false;
-                if (filters.nudismo === 'yes' && (beach.nudismo !== 'Sì' && beach.nudismo !== 'A volte')) return false;
-                if (filters.nudismo === 'no' && beach.nudismo !== 'No') return false;
-                return true;
-            });
-            
-            renderList(filteredBeaches);
-            // Clear details if no beaches match
-            if(filteredBeaches.length === 0){
-                 detailsContainer.innerHTML = `<div class="placeholder"><p>Nessuna spiaggia corrisponde ai filtri selezionati.</p></div>`;
-            }
-        }
-        
-        function renderList(beaches) {
-            listUl.innerHTML = ''; // Clear current list
-            if (beaches.length === 0) {
-                listUl.innerHTML = '<li class="no-results">Nessun risultato trovato.</li>';
-                return;
-            }
-
-            beaches.forEach(beach => {
-                const li = document.createElement('li');
-                li.textContent = beach.nome;
-                li.dataset.index = beach.originalIndex;
-                li.addEventListener('click', (e) => {
-                    displayBeachDetails(parseInt(e.currentTarget.dataset.index));
-                    if(activeListItem) {
-                        activeListItem.classList.remove('active');
-                    }
-                    li.classList.add('active');
-                    activeListItem = li;
-                });
-                listUl.appendChild(li);
-            });
-        }
-
-        function createRatingStars(rating) {
-            let stars = '';
-            for (let i = 0; i < 5; i++) {
-                stars += i < rating ? '★' : '☆';
-            }
-            return stars;
-        }
-
-        function displayBeachDetails(index) {
-            const beach = beachesData[index];
-            const mapQuery = encodeURIComponent(beach.nome.replace(/\(.*?\)/g, '').trim());
-            const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery},Costa Brava`;
-            
-            detailsContainer.innerHTML = `
-                <div class="card">
-                    <h2>${beach.nome}</h2>
-                    <p>${beach.descrizione}</p>
-                    
-                    <h3>Dettagli</h3>
-                    <div class="details-grid">
-                        <div class="detail-item"><strong>Tipo di fondo:</strong> ${beach.fondo}</div>
-                        <div class="detail-item"><strong>Servizi:</strong> ${beach.servizi}</div>
-                        <div class="detail-item"><strong>Bagni:</strong> ${beach.bagni}</div>
-                        <div class="detail-item"><strong>Docce:</strong> ${beach.docce}</div>
-                        <div class="detail-item"><strong>Nudismo:</strong> ${beach.nudismo}</div>
-                    </div>
-
-                    <h3>Valutazioni</h3>
-                    <div class="ratings-grid">
-                        <div class="rating-item"><span>Facilità accesso</span><span class="rating-stars">${createRatingStars(beach.accesso)}</span></div>
-                        <div class="rating-item"><span>Bellezza</span><span class="rating-stars">${createRatingStars(beach.bellezza)}</span></div>
-                        <div class="rating-item"><span>Affollamento</span><span class="rating-stars">${createRatingStars(beach.affollamento)}</span></div>
-                        <div class="rating-item"><span>Esposizione vento</span><span class="rating-stars">${createRatingStars(beach.vento)}</span></div>
-                        <div class="rating-item"><span>Pulizia</span><span class="rating-stars">${createRatingStars(beach.pulizia)}</span></div>
-                    </div>
-
-                    <a href="${mapUrl}" target="_blank" class="map-link">Vedi su Google Maps</a>
-                </div>
-            `;
-        }
-
-        // Initialize the app
         document.addEventListener('DOMContentLoaded', () => {
-            populateLocationFilter();
-            applyFilters(); // Initial render with all beaches
+            // Prepare data
+            beachesData.forEach((beach, index) => {
+                beach.originalIndex = index;
+                const match = beach.nome.match(/\((.*?)\)/);
+                beach.localita = match ? match[1] : 'Sconosciuta';
+            });
+
+            const listUl = document.getElementById('list-ul');
+            const detailsContainer = document.getElementById('beach-details');
+            const localitaFilter = document.getElementById('filter-localita');
+            const nudismoFilter = document.getElementById('filter-nudismo');
+            const bellezzaFilter = document.getElementById('filter-bellezza');
+            const accessoFilter = document.getElementById('filter-accesso');
+
+            let activeListItem = null;
+
+            function populateLocationFilter() {
+                const locations = [...new Set(beachesData.map(b => b.localita))].sort();
+                locations.forEach(location => {
+                    const option = document.createElement('option');
+                    option.value = location;
+                    option.textContent = location;
+                    localitaFilter.appendChild(option);
+                });
+            }
             
-            // Add event listeners to filters
+            function applyFilters() {
+                const filters = {
+                    localita: localitaFilter.value,
+                    nudismo: nudismoFilter.value,
+                    bellezza: parseInt(bellezzaFilter.value, 10),
+                    accesso: parseInt(accessoFilter.value, 10),
+                };
+
+                const filteredBeaches = beachesData.filter(beach => {
+                    if (filters.localita !== 'all' && beach.localita !== filters.localita) return false;
+                    if (filters.bellezza > 0 && beach.bellezza < filters.bellezza) return false;
+                    if (filters.accesso > 0 && beach.accesso < filters.accesso) return false;
+                    if (filters.nudismo === 'yes' && !['Sì', 'A volte'].includes(beach.nudismo)) return false;
+                    if (filters.nudismo === 'no' && beach.nudismo !== 'No') return false;
+                    return true;
+                });
+                
+                renderList(filteredBeaches);
+                if(filteredBeaches.length === 0){
+                     detailsContainer.innerHTML = `<div class="placeholder"><p>Nessuna spiaggia corrisponde ai filtri selezionati.</p></div>`;
+                } else if (window.innerWidth > 768) {
+                    // On desktop, show first result automatically if list is not empty
+                    displayBeachDetails(filteredBeaches[0].originalIndex);
+                    const firstLi = listUl.querySelector('li');
+                    if (firstLi) {
+                         if(activeListItem) activeListItem.classList.remove('active');
+                         firstLi.classList.add('active');
+                         activeListItem = firstLi;
+                    }
+                }
+            }
+            
+            function renderList(beaches) {
+                listUl.innerHTML = '';
+                if (beaches.length === 0) {
+                    listUl.innerHTML = '<li class="no-results">Nessun risultato trovato.</li>';
+                    return;
+                }
+
+                beaches.forEach(beach => {
+                    const li = document.createElement('li');
+                    li.textContent = beach.nome;
+                    li.dataset.index = beach.originalIndex;
+                    li.addEventListener('click', (e) => {
+                        const index = parseInt(e.currentTarget.dataset.index);
+                        displayBeachDetails(index);
+                        
+                        if(activeListItem) activeListItem.classList.remove('active');
+                        li.classList.add('active');
+                        activeListItem = li;
+
+                        // --- MOBILE UX: SCROLL AUTOMATICO ---
+                        if (window.innerWidth <= 768) {
+                            detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                    listUl.appendChild(li);
+                });
+            }
+
+            function createRatingStars(rating) {
+                let stars = '';
+                for (let i = 0; i < 5; i++) {
+                    stars += i < rating ? '★' : '☆';
+                }
+                return stars;
+            }
+
+            function displayBeachDetails(index) {
+                const beach = beachesData[index];
+                const mapQuery = encodeURIComponent(beach.nome.replace(/\(.*?\)/g, '').trim());
+                const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery},Costa Brava`;
+                
+                detailsContainer.innerHTML = `
+                    <div class="card">
+                        <h2>${beach.nome}</h2>
+                        <p>${beach.descrizione}</p>
+                        
+                        <h3>Dettagli</h3>
+                        <div class="details-grid">
+                            <div class="detail-item"><strong>Tipo di fondo:</strong> ${beach.fondo}</div>
+                            <div class="detail-item"><strong>Servizi:</strong> ${beach.servizi}</div>
+                            <div class="detail-item"><strong>Bagni:</strong> ${beach.bagni}</div>
+                            <div class="detail-item"><strong>Docce:</strong> ${beach.docce}</div>
+                            <div class="detail-item"><strong>Nudismo:</strong> ${beach.nudismo}</div>
+                        </div>
+
+                        <h3>Valutazioni</h3>
+                        <div class="ratings-grid">
+                            <div class="rating-item"><span>Facilità accesso</span><span class="rating-stars">${createRatingStars(beach.accesso)}</span></div>
+                            <div class="rating-item"><span>Bellezza</span><span class="rating-stars">${createRatingStars(beach.bellezza)}</span></div>
+                            <div class="rating-item"><span>Affollamento</span><span class="rating-stars">${createRatingStars(beach.affollamento)}</span></div>
+                            <div class="rating-item"><span>Esposizione vento</span><span class="rating-stars">${createRatingStars(beach.vento)}</span></div>
+                            <div class="rating-item"><span>Pulizia</span><span class="rating-stars">${createRatingStars(beach.pulizia)}</span></div>
+                        </div>
+
+                        <a href="${mapUrl}" target="_blank" class="map-link">Vedi su Google Maps</a>
+                    </div>
+                `;
+            }
+
+            // Initialize the app
+            populateLocationFilter();
+            applyFilters();
+            
             [localitaFilter, nudismoFilter, bellezzaFilter, accessoFilter].forEach(filter => {
                 filter.addEventListener('change', applyFilters);
             });
         });
-
     </script>
 </body>
 </html>
