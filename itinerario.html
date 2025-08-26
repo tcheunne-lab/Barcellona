@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerario Barcellona</title>
+    <style>
+        :root {
+            --primary-bg: #f4f4f9;
+            --card-bg: #ffffff;
+            --header-bg: #ff5a5f;
+            --text-color: #333;
+            --accent-color: #007a87;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .container {
+            padding: 1rem;
+        }
+
+        .day-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            overflow: hidden;
+        }
+
+        .day-header {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 1.2rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .timeline {
+            list-style-type: none;
+            padding: 1rem 0;
+        }
+
+        details {
+            padding: 0 1.2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        details:last-of-type {
+            border-bottom: none;
+        }
+
+        summary {
+            padding: 1rem 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        summary::after {
+            content: '▼';
+            font-size: 0.8rem;
+            color: #999;
+            transition: transform 0.2s;
+        }
+        
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            padding-bottom: 1rem;
+        }
+
+        .details-content p {
+            margin-bottom: 0.8rem;
+        }
+
+        .map-link {
+            display: inline-block;
+            background-color: #f0f8ff;
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            transition: background-color 0.2s;
+            border: 1px solid #d4eaf0;
+        }
+
+        .map-link:hover {
+            background-color: #e1f0f5;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Itinerario Barcellona</h1>
+        <p>26/08 – 28/08</p>
+    </header>
+
+    <main class="container">
+
+        <!-- Giorno 1 -->
+        <section class="day-card">
+            <div class="day-header">Giorno 1: Street Vibe, Arte e Mare</div>
+            <ul class="timeline">
+                <details>
+                    <summary>🌅 Mattina (9:00 - 12:30)</summary>
+                    <div class="details-content">
+                        <p><strong>09:30 - Cattedrale di Barcellona:</strong> Visita alla cattedrale gotica e salita alle terrazze.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Cattedrale+di+Barcellona" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>10:15 - Plaça Sant Felip Neri:</strong> Sosta in una piazza suggestiva e nascosta.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+Sant+Felip+Neri" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>10:45 - Plaça del Rei & Sant Jaume:</strong> Passeggiata nel cuore del Quartiere Gotico.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei+Barcelona" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>11:15 - Esplorazione del Raval:</strong> Visita al MACBA e alla sua skate plaza o alla storica Biblioteca de Catalunya.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=MACBA+Barcelona" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🥘 Pranzo (12:30 - 14:00)</summary>
+                    <div class="details-content">
+                        <p><strong>Consigliato:</strong> El Quim de la Boqueria (tapas fresche al mercato).</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=El+Quim+de+la+Boqueria" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>Alternative:</strong> El Xampanyet (Born) o Caravelle (Raval).</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>🌇 Pomeriggio (14:00 - 17:00)</summary>
+                    <div class="details-content">
+                        <p><strong>Las Ramblas e La Boqueria:</strong> Passeggiata sulla via più famosa e sosta al mercato.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Mercado+de+la+Boqueria" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>El Born:</strong> Esplorazione del quartiere con visita alla Basilica di Santa Maria del Mar.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Basilica+di+Santa+Maria+del+Mar" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🖼️ Tardo Pomeriggio (17:00 - 19:30)</summary>
+                    <div class="details-content">
+                        <p><strong>Moco Museum:</strong> Arte contemporanea e moderna.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Moco+Museum+Barcelona" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>Parc de la Ciutadella:</strong> Passeggiata nel parco fino all'Arc de Triomf.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Parc+de+la+Ciutadella" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>🌙 Sera (20:00 - 23:30)</summary>
+                    <div class="details-content">
+                        <p><strong>Cena:</strong> Cal Pep (tapas gourmet di mare) o La Mar Salada (paella alla Barceloneta).</p>
+                        <p><strong>Drink:</strong> Terrazza del Museu d’Història de Catalunya con vista su Port Vell.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Port+Vell+Barcelona" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+            </ul>
+        </section>
+
+        <!-- Giorno 2 -->
+        <section class="day-card">
+            <div class="day-header">Giorno 2: Le Meraviglie del Modernismo</div>
+            <ul class="timeline">
+                <details>
+                    <summary>🌅 Mattina (8:00 - 12:00)</summary>
+                    <div class="details-content">
+                        <p><strong>08:00 - Bunkers del Carmel:</strong> Alba e panorama mozzafiato sulla città.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Bunkers+del+Carmel" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>09:00 - Park Güell:</strong> Visita al capolavoro di Gaudí (prenotare online!).</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Park+Güell" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🥘 Pranzo (12:30 - 14:00)</summary>
+                    <div class="details-content">
+                        <p><strong>Location:</strong> Quartiere di Gràcia.</p>
+                        <p><strong>Consigliato:</strong> La Pepita (tapas creative).</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=La+Pepita+Barcelona" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>Alternative:</strong> Bodega Marín (tradizionale) o ristoranti in Plaça de la Vila de Gràcia.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🌇 Pomeriggio (14:00 - 17:30)</summary>
+                    <div class="details-content">
+                        <p><strong>14:00 - Recinte Modernista de Sant Pau:</strong> Visita all'ex ospedale, gioiello del modernismo.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Recinte+Modernista+de+Sant+Pau" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>15:45 - Sagrada Família:</strong> Ingresso prenotato per la basilica simbolo di Barcellona.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Sagrada+Família" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🌙 Sera (19:00 - 23:00)</summary>
+                    <div class="details-content">
+                        <p><strong>Passeig de Gràcia:</strong> Ammirare Casa Batlló e Casa Milà illuminate.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Passeig+de+Gràcia" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>Cena:</strong> El Nacional (multi-gastronomico) o Cervecería Catalana (tapas celebri, prepararsi alla coda).</p>
+                    </div>
+                </details>
+            </ul>
+        </section>
+
+        <!-- Giorno 3 -->
+        <section class="day-card">
+            <div class="day-header">Giorno 3: Spiaggia e Costa Brava</div>
+            <ul class="timeline">
+                <details>
+                    <summary>🌅 Mattina (9:00 - 12:00)</summary>
+                    <div class="details-content">
+                        <p><strong>Relax alla Barceloneta:</strong> Mattinata in spiaggia.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Spiaggia+della+Barceloneta" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>Passeggiata:</strong> Fino al Pesce dorato di Gehry e a Port Olímpic.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Port+Olímpic+Barcelona" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🥘 Pranzo (12:30 - 14:00)</summary>
+                    <div class="details-content">
+                        <p><strong>Consigliato:</strong> Xiringuito Escribà (paella sulla spiaggia, prenotare!).</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Xiringuito+Escribà" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                        <p><strong>Alternative:</strong> Can Solé (storico) o La Bombeta (tapas autentiche).</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🌇 Pomeriggio (15:00 - 18:30)</summary>
+                    <div class="details-content">
+                        <p><strong>Ritiro auto e bagagli.</strong></p>
+                        <p><strong>La Poma Bike Park:</strong> Pomeriggio di adrenalina (verificare traffico e orari).</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=La+Poma+Bike+Park" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🌙 Sera (21:00 in poi)</summary>
+                    <div class="details-content">
+                        <p><strong>Arrivo in Costa Brava.</strong></p>
+                        <p><strong>Passeggiata serale:</strong> A Tossa de Mar o Calella de Palafrugell.</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Tossa+de+Mar" target="_blank" class="map-link">📍 Vedi su Google Maps</a>
+                    </div>
+                </details>
+            </ul>
+        </section>
+
+    </main>
+
+</body>
+</html>
